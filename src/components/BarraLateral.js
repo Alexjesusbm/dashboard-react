@@ -1,10 +1,9 @@
 import styled from "styled-components"
-import { CiHome } from "react-icons/ci";
+import { CiHome, CiSettings } from "react-icons/ci";
 import { LuLayoutPanelLeft } from "react-icons/lu";
 import { GiCardboardBoxClosed } from "react-icons/gi";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoPersonOutline } from "react-icons/io5";
-import { CiSettings } from "react-icons/ci";
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { FcBiohazard } from "react-icons/fc";
 
