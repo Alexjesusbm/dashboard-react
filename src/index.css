@@ -1,3 +1,4 @@
+
 body {
   background-color: #242424; 
   margin: 0;
@@ -8,11 +9,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
 }
 
 header {
    margin-left: 120px;
-   color: white;
    line-height: 10px;
 }
 
