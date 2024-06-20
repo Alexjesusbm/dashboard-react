@@ -1,5 +1,7 @@
 import BarraLateral from "./components/BarraLateral";
 import Dashboard from "./components/Dashboard";
+import { Chart } from "chart.js";
+import { Chart } from "react-chartjs-2";
 
 function App() {
   return (
