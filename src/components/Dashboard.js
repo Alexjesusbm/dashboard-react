@@ -1,7 +1,11 @@
 import styled from "styled-components";
+import { Chart as ChartJS} from "chart.js/auto"
+import { Bar, Doughnut, Line } from "react-chartjs-2";
 import { CiGift } from "react-icons/ci";
 import { IoCart } from "react-icons/io5";
 import { MdOutlineMonetizationOn } from "react-icons/md";
+import sourceData from "../data/sourceData.json"
+import revenueData from "../data/revenueData.json"
 
 const StyledDashboard = styled.div`
     display: flex;
@@ -107,10 +111,32 @@ function Dashboard(){
         <StyledCard className="card4">
         </StyledCard>
         <StyledCard className="card5">
-            <CardText><h4>Vendas ao longo do tempo</h4></CardText>
+            <CardText><h4>Vendas ao longo do tempo
+                <Line
+                data={{
+                    labels: revenueData.map((data) => data.label),
+                    datasets:[
+                    {
+                        label: revenueData.map((data) => data.revenue),
+                        data: revenueData.map((data) => data.costs)
+                    }
+                ],
+                }}/></h4></CardText>
         </StyledCard>
         <StyledCard className="card6">
-            <CardText><h4>Faça a analise do rank de vendas por:</h4></CardText> 
+            <CardText><h4>Faça a analise do rank de vendas por:
+                <Bar 
+                data={{
+                    labels: sourceData.map((data) => data.label),
+                    datasets: [
+                        {
+                            label: "Count",
+                            data: sourceData.map((data) => data.value),
+                        },
+                    ],
+                }}
+                /></h4>
+            </CardText> 
         </StyledCard>
         <StyledCard className="card7">
             <CardText>
@@ -129,4 +155,4 @@ function Dashboard(){
     );
 }
 
-export default Dashboard
+export default Dashboard;
