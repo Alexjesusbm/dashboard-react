@@ -1,11 +1,20 @@
 import styled from "styled-components";
-import { Chart as ChartJS} from "chart.js/auto"
-import { Bar, Doughnut, Line } from "react-chartjs-2";
+import { Chart as ChartJS, defaults} from "chart.js/auto"
+import { Bar, Chart, Doughnut, Line } from "react-chartjs-2";
 import { CiGift } from "react-icons/ci";
 import { IoCart } from "react-icons/io5";
 import { MdOutlineMonetizationOn } from "react-icons/md";
-import sourceData from "../data/sourceData.json"
-import revenueData from "../data/revenueData.json"
+import sourceData from "../data/sourceData.json";
+import revenueData from "../data/revenueData.json";
+
+defaults.maintainAspectRatio = false;
+
+defaults.plugins.title.display = true;
+defaults.plugins.title.align = "start";
+defaults.plugins.title.font.size = 20;
+defaults.plugins.title.color = "black";
+
+
 
 const StyledDashboard = styled.div`
     display: flex;
@@ -84,6 +93,15 @@ const StyledIcon = styled.div`
     border-radius: 10px;
 `;
 
+const ChartContainer = styled.div`
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+`;
+
 function Dashboard(){
     return (
     <div>
@@ -112,7 +130,7 @@ function Dashboard(){
         </StyledCard>
         <StyledCard className="card5">
             <CardText><h4>Vendas ao longo do tempo
-                <Line
+                <ChartContainer><Line
                 data={{
                     labels: revenueData.map((data) => data.label),
                     datasets:[
@@ -121,11 +139,11 @@ function Dashboard(){
                         data: revenueData.map((data) => data.costs)
                     }
                 ],
-                }}/></h4></CardText>
+                }}/></ChartContainer></h4></CardText>
         </StyledCard>
         <StyledCard className="card6">
             <CardText><h4>Faça a analise do rank de vendas por:
-                <Bar 
+                <ChartContainer><Bar 
                 data={{
                     labels: sourceData.map((data) => data.label),
                     datasets: [
@@ -135,12 +153,23 @@ function Dashboard(){
                         },
                     ],
                 }}
-                /></h4>
+                /></ChartContainer></h4>
             </CardText> 
         </StyledCard>
         <StyledCard className="card7">
             <CardText>
-            <h4>Representatividade Vendas</h4>
+            <h4>Representatividade Vendas
+                <ChartContainer><Doughnut 
+                data={{
+                    labels: sourceData.map((data) => data.label),
+                    datasets: [
+                        {
+                            label: "Count",
+                            data: sourceData.map((data) => data.value),
+                        },
+                    ],
+                }}/></ChartContainer>   
+            </h4>
             <p>Por categoria de produto</p>
             </CardText> 
         </StyledCard>
