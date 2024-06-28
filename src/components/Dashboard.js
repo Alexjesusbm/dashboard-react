@@ -22,19 +22,14 @@ const StyledDashboard = styled.div`
     width: 140vh;
     height: 85vh;
     margin-left: 100px;
-    align-items: center; 
-    justify-content: center;
 `;
 
 const StyledCard = styled.div`
     background-color: #161617;
-    width: 50px; 
-    height: 50px;
     margin: 4px;
     padding: 5px;
     border-radius: 10px;
-    line-height: 15px;
-    display: flex;
+    
 
     &.card1 {
     border-top: 10px solid #4ee1b4;
@@ -82,22 +77,21 @@ const StyledCard = styled.div`
 `;
 
 const CardText = styled.div`
-    text-align: center;
+    margin-top: -20px;
+    margin-bottom: -58px;
+    line-height: 10px;
 `;
 
 const StyledIcon = styled.div`
     background-color: #242424;
     height: 40px;
-    font-size: 40px;
-    margin-left: auto;
+    margin-left: 113px;
+    font-size: 38px;
     border-radius: 10px;
+    margin-top: 45px;
 `;
 
 const ChartContainer = styled.div`
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
 `;
@@ -129,7 +123,7 @@ function Dashboard(){
         <StyledCard className="card4">
         </StyledCard>
         <StyledCard className="card5">
-            <CardText><h4>Vendas ao longo do tempo
+            <CardText><h4>Vendas ao longo do tempo</h4></CardText>
                 <ChartContainer><Line
                 data={{
                     labels: revenueData.map((data) => data.label),
@@ -139,10 +133,10 @@ function Dashboard(){
                         data: revenueData.map((data) => data.costs)
                     }
                 ],
-                }}/></ChartContainer></h4></CardText>
+                }}/></ChartContainer>
         </StyledCard>
         <StyledCard className="card6">
-            <CardText><h4>Faça a analise do rank de vendas por:
+            <CardText><h4>Faça a analise do rank de vendas por:</h4></CardText>
                 <ChartContainer><Bar 
                 data={{
                     labels: sourceData.map((data) => data.label),
@@ -153,13 +147,16 @@ function Dashboard(){
                         },
                     ],
                 }}
-                /></ChartContainer></h4>
-            </CardText> 
+                options={{
+                    indexAxis: "y",
+                }}
+                /></ChartContainer> 
         </StyledCard>
         <StyledCard className="card7">
             <CardText>
-            <h4>Representatividade Vendas
-                <ChartContainer><Doughnut 
+                <h4>Representatividade Vendas</h4><p>Por categoria do produto</p>
+            </CardText> 
+            <ChartContainer><Doughnut 
                 data={{
                     labels: sourceData.map((data) => data.label),
                     datasets: [
@@ -168,10 +165,7 @@ function Dashboard(){
                             data: sourceData.map((data) => data.value),
                         },
                     ],
-                }}/></ChartContainer>   
-            </h4>
-            <p>Por categoria de produto</p>
-            </CardText> 
+                }}/></ChartContainer>
         </StyledCard>
         <StyledCard className="card7">
             <CardText><h4>Atingimento de metas</h4></CardText>
