@@ -6,9 +6,11 @@ import { IoCart } from "react-icons/io5";
 import { MdOutlineMonetizationOn } from "react-icons/md";
 import sourceData from "../data/sourceData.json";
 import revenueData from "../data/revenueData.json";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+
 
 defaults.maintainAspectRatio = false;
-
 defaults.plugins.title.display = true;
 defaults.plugins.title.align = "start";
 defaults.plugins.title.font.size = 20;
@@ -169,9 +171,30 @@ function Dashboard(){
         </StyledCard>
         <StyledCard className="card7">
             <CardText><h4>Atingimento de metas</h4></CardText>
+            <ChartContainer><Doughnut 
+                data={{
+                    labels: sourceData.map((data) => data.label),
+                    datasets: [
+                        {
+                            label: "Count",
+                            data: sourceData.map((data) => data.value),
+                        },
+                    ],
+                }}/></ChartContainer>
         </StyledCard>
         <StyledCard className="card8">
             <CardText><h4>Localidades (UF e Região)</h4></CardText>
+            <ChartContainer>
+            <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={[51.505, -0.09]}>
+                    <Popup>A pretty CSS3 popup. <br /> Easily customizable.</Popup>
+                </Marker>
+            </MapContainer>
+            </ChartContainer>
         </StyledCard>
         </StyledDashboard>
     </div>
