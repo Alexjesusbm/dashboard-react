@@ -123,6 +123,19 @@ function Dashboard(){
             </StyledIcon>
         </StyledCard>
         <StyledCard className="card4">
+        <ChartContainer><Bar 
+                data={{
+                    labels: sourceData.map((data) => data.label),
+                    datasets: [
+                        {
+                            label: "Count",
+                            data: sourceData.map((data) => data.value),
+                        },
+                    ],
+                }}
+                options={{
+                    indexAxis: "x",}}
+                /></ChartContainer> 
         </StyledCard>
         <StyledCard className="card5">
             <CardText><h4>Vendas ao longo do tempo</h4></CardText>
